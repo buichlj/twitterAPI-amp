@@ -1,0 +1,27 @@
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<br>
+<br>
+
+<h1>Tweets</h1>
+<form action="/polls/" method="get">
+	<input type="text" name="twitterHandle" />
+	<input type="submit" value="Click" name="mybtn"/>
+    <input type="submit" value="Tweet" name="mybtn"/>
+</form>
+{% if tweets %}
+	<ul>
+    {% for tweet in tweets %}
+        <li>{{ tweet.status.text }}</li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
